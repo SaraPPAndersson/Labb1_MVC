@@ -1,0 +1,33 @@
+﻿@model Labb1_MVC.Models.Pokemon
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1>@Model.Name</h1>
+
+<h3>Stats</h3>
+<ul>
+    @foreach (var stat in Model.Stats)
+    {
+        <li>@stat.Stats.Name: @stat.BaseStat</li>
+    }
+</ul>
+
+<h3>Type</h3>
+<ul>
+    @foreach (var type in Model.Types)
+    {
+        <li>@type.Types.Name</li>
+    }
+</ul>
+
+<h3>Abilities</h3>
+<ul>
+    @foreach (var ability in Model.Abilities)
+    {
+        <li>@ability.Abilities.Name</li>
+    }
+</ul>
+
+<a asp-controller="Pokemon" asp-action="Index">Return to Pokémon list</a>

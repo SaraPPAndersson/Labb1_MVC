@@ -1,0 +1,43 @@
+﻿@model List<Labb1_MVC.Models.PokemonListItem>
+@{
+    ViewData["Title"] = "Pokémon";
+}
+<h1>Pokémon</h1>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p style="color: red;">@ViewBag.ErrorMessage</p>
+}
+
+<form asp-controller="Pokemon" asp-action="PokemonSearch" method="get">
+    <input type="text" name="query" placeholder="Search..." style="background-color: white; border: 1px solid #ccc; border-radius: 20px; padding: 8px 16px;" />
+    <button type="submit" style="background-color: gold; border: none; border-radius: 20px; padding: 8px 16px; cursor: pointer;">Search</button>
+</form>
+
+<hr />
+
+@if (ViewBag.ErrorMessage == null)
+{
+
+    @if (!Model.Any())
+    {
+        <p>Pokémon du sökte hittades inte</p>
+
+    }
+    else
+    {
+
+        <ul>
+            @foreach (var pokemon in Model)
+            {
+                <li>
+                    <a asp-controller="Pokemon" asp-action="Details" asp-route-name="@pokemon.Name">
+                        @pokemon.Name
+
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+}
+<a asp-controller="Pokemon" asp-action="Index">Return to Pokémon list</a>
